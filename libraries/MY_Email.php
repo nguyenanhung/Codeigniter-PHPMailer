@@ -45,7 +45,7 @@ class MY_Email extends CI_Email {
 
     public $phpmailer;  // This property has been made public for testing purposes.
 
-    protected static $default_properties = array(
+    protected $properties = array(
         'useragent' => 'CodeIgniter',
         'mailpath' => '/usr/sbin/sendmail',
         'protocol' => 'mail',
@@ -63,8 +63,8 @@ class MY_Email extends CI_Email {
         'multipart' => 'mixed',
         'alt_message' => '',
         'validate' => FALSE,
-        'xmailer' => '',
         'priority' => 3,
+        'xmailer' => '',
         'newline' => "\n",
         'crlf' => "\n",
         'dsn' => FALSE,
@@ -81,8 +81,6 @@ class MY_Email extends CI_Email {
         'dkim_passphrase' => '',
         'dkim_identity' => '',
     );
-
-    protected $properties = array();
 
     protected $mailer_engine = 'codeigniter';
     protected $CI;
@@ -110,14 +108,12 @@ class MY_Email extends CI_Email {
 
         // Wipe out certain properties that are declared within the parent class.
         // These properties would be accessed by magic.
-        foreach (array_keys(self::$default_properties) as $name) {
+        foreach (array_keys($this->properties) as $name) {
 
             if (property_exists($this, $name)) {
                 unset($this->{$name});
             }
         }
-
-        $this->properties = self::$default_properties;
   
         $this->_safe_mode = (!is_php('5.4') && ini_get('safe_mode'));
 
