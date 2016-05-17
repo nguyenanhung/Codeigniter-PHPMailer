@@ -915,7 +915,7 @@ class MY_Email extends CI_Email {
 
     public function set_priority($n = 3) {
 
-        $n = preg_match('/^[1-5]$/', $n) ? (int) $n : 3;
+        $n = preg_match('/^[1-5]$/', $n) ? (int) $n : null;
 
         $this->properties['priority'] = $n;
 
