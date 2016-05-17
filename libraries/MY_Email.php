@@ -63,6 +63,7 @@ class MY_Email extends CI_Email {
         'multipart' => 'mixed',
         'alt_message' => '',
         'validate' => FALSE,
+        'xmailer' => '',
         'priority' => 3,
         'newline' => "\n",
         'crlf' => "\n",
@@ -926,6 +927,17 @@ class MY_Email extends CI_Email {
         return $this;
     }
 
+    public function set_xmailer($s = '') {
+
+        $this->properties['xmailer'] = $s;
+
+        if ($this->mailer_engine == 'phpmailer') {
+            $this->phpmailer->XMailer = $s;
+        }
+
+        return $this;
+    }
+    
     public function set_newline($newline = "\n") {
 
         $newline = in_array($newline, array("\n", "\r\n", "\r")) ? $newline : "\n";
