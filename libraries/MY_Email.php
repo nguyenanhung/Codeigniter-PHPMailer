@@ -99,7 +99,7 @@ class MY_Email extends CI_Email {
 
         $this->_is_ci_3 = (bool) ((int) CI_VERSION >= 3);
 
-        $this->CI = get_instance();
+        $this->CI =& get_instance();
         $this->CI->load->helper('email');
         $this->CI->load->helper('html');
 
@@ -117,8 +117,7 @@ class MY_Email extends CI_Email {
         }
 
         $this->properties = self::$default_properties;
-        $this->refresh_properties();
-
+  
         $this->_safe_mode = (!is_php('5.4') && ini_get('safe_mode'));
 
         if (!isset($config['charset'])) {
@@ -130,15 +129,7 @@ class MY_Email extends CI_Email {
         log_message('info', 'Email Class Initialized (Engine: '.$this->mailer_engine.')');
     }
 
-    // Triggers the setter functions to do their job.
-    protected function refresh_properties() {
-
-        foreach (array_keys(self::$default_properties) as $name) {
-            $this->{$name} = $this->{$name};
-        }
-    }
-
-
+    
     // The Destructor ----------------------------------------------------------
 
     public function __destruct() {
@@ -672,7 +663,6 @@ class MY_Email extends CI_Email {
             }
         }
 
-        $this->refresh_properties();
         $this->clear(true);
 
         return $this;
