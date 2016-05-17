@@ -18,6 +18,7 @@ $config['mailtype']         = 'html';                   // 'text' or 'html'
 $config['charset']          = null;                     // 'UTF-8', 'ISO-8859-15', ...; NULL (preferable) means config_item('charset'), i.e. the character set of the site.
 $config['validate']         = true;
 $config['priority']         = 3;                        // 1, 2, 3, 4, 5; on PHPMailer useragent NULL is a possible option, it means that X-priority header is not set at all, see https://github.com/PHPMailer/PHPMailer/issues/449
+$config['xmailer']          = '';                       // An empty string for PHPMailer default, whitespace for none, or a string to use
 $config['crlf']             = "\n";                     // "\r\n" or "\n" or "\r"
 $config['newline']          = "\n";                     // "\r\n" or "\n" or "\r"
 $config['bcc_batch_mode']   = false;
