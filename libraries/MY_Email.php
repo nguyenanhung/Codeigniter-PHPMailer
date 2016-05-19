@@ -139,7 +139,7 @@ class MY_Email extends CI_Email {
 
     // Magic -------------------------------------------------------------------
 
-    function __set($name, $value) {
+    public function __set($name, $value) {
 
         $method = 'set_'.$name;
 
@@ -150,7 +150,7 @@ class MY_Email extends CI_Email {
         }
     }
 
-    function __get($name) {
+    public function __get($name) {
 
         if (array_key_exists($name, $this->properties)) {
             return $this->properties[$name];
