@@ -111,7 +111,7 @@ class MY_Email extends CI_Email {
         foreach (array_keys($this->properties) as $name) {
 
             if (property_exists($this, $name)) {
-                unset($this->{$name});
+                unset($this->$name);
             }
         }
   
@@ -199,7 +199,7 @@ class MY_Email extends CI_Email {
         }
 
         foreach ($config as $key => $value) {
-            $this->{$key} = $value;
+            $this->$key = $value;
         }
 
         $this->clear();
